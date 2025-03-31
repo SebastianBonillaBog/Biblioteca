@@ -9,7 +9,7 @@ import {
     patchPersona,
     bulkInsertPersonas,
     bulkUpdatePersonas,
-  } from '../controllers/personaController.mjs';
+  } from '../controllers/usuarioController.mjs';
   
 
   const router = express.Router();

@@ -2,7 +2,7 @@
 import { createServer } from 'node:http';
 import express from 'express';
 import pool from './src/database/connection.mjs';
-import personaRoutes from './src/routes/personaRoutes.mjs';
+import personaRoutes from './src/routes/usuarioRoutes.mjs';
 import prestamoRoutes from './src/routes/prestamoRoutes.mjs';
 import cors from 'cors';
 
