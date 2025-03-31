@@ -26,7 +26,6 @@ export const getPersonaById = async (req, res) => {
     }omm
   };
 
-  //Test
 
   
 // Crear un nuevo registro
