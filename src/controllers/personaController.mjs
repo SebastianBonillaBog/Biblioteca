@@ -23,9 +23,10 @@ export const getPersonaById = async (req, res) => {
       res.json(rows[0]);
     } catch (error) {
       res.status(500).json({ error: error.message });
-    }
+    }omm
   };
 
+  //Test
 
   
 // Crear un nuevo registro
