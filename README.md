@@ -74,3 +74,9 @@ fecha_prestamo DATE NOT NULL,
 estado_prestamo varchar(40) NOT null,
 id_usuario int not NULL
 );
+
+alter table usuario add constraint fk_id_rol foreign key (id_rol) references rol(id_rol)
+alter table libro add constraint fk_id_editorial FOREIGN KEY (id_editorial) REFERENCES editorial(id_editorial)
+alter table libro add constraint fk_id_genero foreign key (id_genero) references genero(id_genero)
+alter table multa add constraint fk_id_usuario foreign key (id_usuario)references usuario (id_usuario)
+alter table prestamo add constraint fk_prestamo__id_usuario foreign key (id_usuario)references usuario (id_usuario)
