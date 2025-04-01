@@ -27,11 +27,11 @@ export const getPrestamoByIdentificacion = async (req,res) => {
 
 //Crear un nuevo prestamo
 export const createPrestamo = async (req, res) => {
-    const {identificacion, nombreLibro, fechaPrestamo } = req.body;
+    const { fecha_prestamo, estado_prestamo, id_usuario } = req.body;
     try{
         const result = await pool.query(
-            'INSERT INTO prestamo (identificacion, nombrelibro, fechaPrestamo) VALUES (?, ?, ?)',
-        [identificacion,nombreLibro, fechaPrestamo]
+            'INSERT INTO prestamo (fecha_prestamo, estado_prestamo, id_usuario) VALUES (?, ?, ?)',
+        [fecha_prestamo, estado_prestamo, id_usuario]
         );
     }catch(error){
         res.status(500).json({error: error.message})

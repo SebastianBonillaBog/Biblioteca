@@ -23,18 +23,17 @@ export const getPersonaById = async (req, res) => {
       res.json(rows[0]);
     } catch (error) {
       res.status(500).json({ error: error.message });
-    }omm
+    }
   };
-
 
   
 // Crear un nuevo registro
 export const createPersona = async (req, res) => {
-    const { identificacion, nombre, apellido, email, telefono, direccion } = req.body;
+    const { num_documento, nombre, apellido, email, telefono, direccion } = req.body;
     try {
       const result = await pool.query(
-        'INSERT INTO usuario (identificacion, nombre, apellido, email, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?)',
-        [identificacion, nombre, apellido, email, telefono, direccion]
+        'INSERT INTO usuario (num_documento, nombre, apellido, email, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?)',
+        [num_documento, nombre, apellido, email, telefono, direccion]
       );
       res.status(201).json({ id: result[0].insertId });
     } catch (error) {
@@ -46,11 +45,11 @@ export const createPersona = async (req, res) => {
   // Actualizar un registro PUT
 export const updatePersona = async (req, res) => {
     const { id } = req.params;
-    const { identificacion, nombre, apellido, email, telefono, direccion } = req.body;
+    const { num_documento, nombre, apellido, email, telefono, direccion } = req.body;
     try {
       const result = await pool.query(
-        'UPDATE usuario SET identificacion = ?, nombre = ?, apellido = ?, email = ?, telefono = ?, direccion = ? WHERE id = ?',
-        [identificacion, nombre, apellido, email, telefono, direccion, id]
+        'UPDATE usuario SET num_documento = ?, nombre = ?, apellido = ?, email = ?, telefono = ?, direccion = ? WHERE id = ?',
+        [num_documento, nombre, apellido, email, telefono, direccion, id]
       );
       if (result[0].affectedRows === 0) {
         return res.status(404).json({ message: 'Persona no encontrada' });
@@ -95,8 +94,8 @@ export const patchPersona = async (req, res) => {
 export const bulkInsertPersonas = async (req, res) => {
     const personas = req.body; // Array de personas
     try {
-      const values = personas.map(({ identificacion, nombre, apellido, email, telefono, direccion }) => [
-        identificacion,
+      const values = personas.map(({ num_documento, nombre, apellido, email, telefono, direccion }) => [
+        num_documento,
         nombre,
         apellido,
         email,
@@ -106,7 +105,7 @@ export const bulkInsertPersonas = async (req, res) => {
 
       //VALIDACIONES?
       const result = await pool.query(
-        'INSERT INTO usuario (identificacion, nombre, apellido, email, telefono, direccion) VALUES ?',
+        'INSERT INTO usuario (num_documento, nombre, apellido, email, telefono, direccion) VALUES ?',
         [values]
       );
       res.status(201).json({ insertedRows: result[0].affectedRows });
