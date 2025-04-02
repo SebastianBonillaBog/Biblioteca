@@ -29,11 +29,11 @@ export const getPersonaById = async (req, res) => {
   
 // Crear un nuevo registro
 export const createPersona = async (req, res) => {
-    const { num_documento, nombre, apellido, email, telefono, direccion } = req.body;
+    const { num_documento, nombre, apellido, correo, telefono, id_rol } = req.body;
     try {
       const result = await pool.query(
-        'INSERT INTO usuario (num_documento, nombre, apellido, email, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?)',
-        [num_documento, nombre, apellido, email, telefono, direccion]
+        'INSERT INTO usuario (num_documento, nombre, apellido, correo, telefono, id_rol) VALUES (?, ?, ?, ?, ?, ?)',
+        [num_documento, nombre, apellido, correo, telefono, id_rol ]
       );
       res.status(201).json({ id: result[0].insertId });
     } catch (error) {
@@ -45,11 +45,11 @@ export const createPersona = async (req, res) => {
   // Actualizar un registro PUT
 export const updatePersona = async (req, res) => {
     const { id } = req.params;
-    const { num_documento, nombre, apellido, email, telefono, direccion } = req.body;
+    const { num_documento, nombre, apellido, correo, telefono, id_rol } = req.body;
     try {
       const result = await pool.query(
-        'UPDATE usuario SET num_documento = ?, nombre = ?, apellido = ?, email = ?, telefono = ?, direccion = ? WHERE id = ?',
-        [num_documento, nombre, apellido, email, telefono, direccion, id]
+        'UPDATE usuario SET num_documento = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, id_rol = ? WHERE id = ?',
+        [num_documento, nombre, apellido, correo, telefono, id_rol, id]
       );
       if (result[0].affectedRows === 0) {
         return res.status(404).json({ message: 'Persona no encontrada' });
@@ -94,18 +94,18 @@ export const patchPersona = async (req, res) => {
 export const bulkInsertPersonas = async (req, res) => {
     const personas = req.body; // Array de personas
     try {
-      const values = personas.map(({ num_documento, nombre, apellido, email, telefono, direccion }) => [
+      const values = personas.map(({ num_documento, nombre, apellido, correo, telefono, id_rol }) => [
         num_documento,
         nombre,
         apellido,
-        email,
+        correo,
         telefono,
-        direccion,
+        id_rol,
       ]);
 
       //VALIDACIONES?
       const result = await pool.query(
-        'INSERT INTO usuario (num_documento, nombre, apellido, email, telefono, direccion) VALUES ?',
+        'INSERT INTO usuario (num_documento, nombre, apellido, correo, telefono, id_rol) VALUES ?',
         [values]
       );
       res.status(201).json({ insertedRows: result[0].affectedRows });
