@@ -10,12 +10,12 @@ export const getAllPrestamos = async (req,res) => {
     }
 };
 
-//Obtener un registro por identificacion
+//Obtener un registro por id
 
-export const getPrestamoByIdentificacion = async (req,res) => {
-    const {identificacion} = req.params;
+export const getPrestamoById = async (req,res) => {
+    const {id_prestamo} = req.params;
     try{
-        const [rows] = await pool.query('SELECT * FROM prestamo WHERE identificacion = ?', [identificacion])
+        const [rows] = await pool.query('SELECT * FROM prestamo WHERE id_prestamo = ?', [id_prestamo])
         if(rows.length === 0){
             return res.status(404).json({message: 'No hay coincidencias'})
         }
@@ -58,9 +58,9 @@ export const updatePrestamo = async (req, res) => {
 
 //Eliminar un prestamo
 export const deletePrestamo = async (req,res) =>{
-    const {id} = req.params;
+    const {id_prestamo} = req.params;
     try{
-        const result = await pool.query('DELETE FROM prestamo WHERE id = ?', [id])
+        const result = await pool.query('DELETE FROM prestamo WHERE id_prestamo = ?', [id_prestamo])
         if (result[0].affectedRows === 0) {
             return res.status(404).json({ message: 'Prestamo no encontrado' });
         }

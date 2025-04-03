@@ -2,7 +2,7 @@ import express from 'express';
 
 import {
     getAllPrestamos,
-    getPrestamoByIdentificacion,
+    getPrestamoById,
     createPrestamo,
     updatePrestamo,
     deletePrestamo,
@@ -12,10 +12,10 @@ import {
 
   const router = express.Router();
   router.get('/', getAllPrestamos);
-  router.get('/:id', getPrestamoByIdentificacion);
+  router.get('/:id_prestamo', getPrestamoById);
   router.post('/', createPrestamo);
-  router.put('/:id', updatePrestamo);
-  router.patch('/:id', patchPrestamo);
-  router.delete('/:id', deletePrestamo);
+  router.put('/:id_prestamo', updatePrestamo);
+  router.patch('/:id_prestamo', patchPrestamo);
+  router.delete('/:id_prestamo', deletePrestamo);
 
   export default router;
