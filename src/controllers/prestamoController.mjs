@@ -40,12 +40,12 @@ export const createPrestamo = async (req, res) => {
 
 //Actualizar un registro PUT
 export const updatePrestamo = async (req, res) => {
-    const { id } = req.params;
-    const {identificacion, nombreLibro, fechaPrestamo } = req.body;
+    const { id_prestamo } = req.params;
+    const {fecha_prestamo, estado_prestamo, id_usuario } = req.body;
     try {
       const result = await pool.query(
-        'UPDATE prestamo SET identificacion = ?, nombreLibro=?, fechaPrestamo=? WHERE id = ?',
-        [identificacion, nombreLibro, fechaPrestamo, id]
+        'UPDATE prestamo SET fecha_prestamo = ?, estado_prestamo=?, id_usuario=? WHERE id_prestamo = ?',
+        [fecha_prestamo, estado_prestamo, id_usuario, id_prestamo]
       );
       if (result[0].affectedRows === 0) {
         return res.status(404).json({ message: 'Prestamo no encontrado' });
@@ -72,10 +72,10 @@ export const deletePrestamo = async (req,res) =>{
 
 // Actualización parcial (PATCH)
 export const patchPrestamo = async (req, res) => {
-    const { id } = req.params;
+    const { id_prestamo } = req.params;
     const updates = req.body; // Solo envía los campos que quieres actualizar
     try {
-      const result = await pool.query('UPDATE prestamo SET ? WHERE id = ?', [updates, id]);
+      const result = await pool.query('UPDATE prestamo SET ? WHERE id_prestamo = ?', [updates, id_prestamo]);
       if (result[0].affectedRows === 0) {
         return res.status(404).json({ message: 'Prestamo no encontrado' });
       }
