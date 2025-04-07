@@ -16,7 +16,7 @@ export const getAllPersonas = async (req, res) => {
 export const getPersonaById = async (req, res) => {
   const { id } = req.params;
   try {
-    const [rows] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [id]);
+    const [rows] = await pool.query('SELECT * FROM usuario WHERE num_documento = ?', [id]);
     if (rows.length === 0) {
       return res.status(404).json({ message: 'Persona no encontrada' });
     }
@@ -67,7 +67,7 @@ export const updatePersona = async (req, res) => {
 export const deletePersona = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await pool.query('DELETE FROM usuario WHERE id_usuario = ?', [id]);
+    const result = await pool.query('DELETE FROM usuario WHERE num_documento = ?', [id]);
     if (result[0].affectedRows === 0) {
       return res.status(404).json({ message: 'Persona no encontrada' });
     }
@@ -82,7 +82,7 @@ export const patchPersona = async (req, res) => {
   const { id } = req.params;
   const updates = req.body; // Solo envía los campos que quieres actualizar
   try {
-    const result = await pool.query('UPDATE usuario SET ? WHERE id_usuario = ?', [updates, id]);
+    const result = await pool.query('UPDATE usuario SET ? WHERE num_documento = ?', [updates, id]);
     if (result[0].affectedRows === 0) {
       return res.status(404).json({ message: 'Persona no encontrada' });
     }
@@ -117,7 +117,7 @@ export const bulkUpdatePersonas = async (req, res) => {
   const personas = req.body; // Array de objetos con ID y campos a actualizar
   try {
     for (const { id, ...fields } of personas) {
-      await pool.query('UPDATE persona SET ? WHERE id_usuario = ?', [fields, id]);
+      await pool.query('UPDATE persona SET ? WHERE num_documento = ?', [fields, id]);
     }
     res.json({ message: 'Personas actualizadas masivamente' });
   } catch (error) {
