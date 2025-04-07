@@ -71,7 +71,7 @@ export const deletePersona = async (req, res) => {
     if (result[0].affectedRows === 0) {
       return res.status(404).json({ message: 'Persona no encontrada' });
     }
-    res.status(204).send(); // Devuelve un código 204 sin contenido
+    res.json({ message: 'Persona eliminada' }); // Devuelve un mensaje del estado del usuario
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
