@@ -4,6 +4,7 @@ import express from 'express';
 import pool from './src/database/connection.mjs';
 import usuarioRoutes from './src/routes/usuarioRoutes.mjs';
 import prestamoRoutes from './src/routes/prestamoRoutes.mjs';
+import librosRoutes from './src/routes/libroRoutes.mjs';
 import cors from 'cors';
 
 
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
   res.send('¡Servidor Express funcionando correctamente!');
 });
 
+app.use('/api/libros', librosRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/prestamos', prestamoRoutes);
 // Usar las rutas de personas2
