@@ -11,8 +11,7 @@ export const getAllMultas = async (req, res) => {
 };
 
 // Imponer multa por mora
-// Se espera en el body: { id_usuario, diasMora }
-// Por ejemplo, se cobra 1 unidad de moneda por cada día de atraso.
+// Se espera en el body: { Valor_multa, id_usuario}
 export const imposeMultaMora = async (req, res) => {
   const { Valor_multa, id_usuario } = req.body;
   try {
@@ -25,6 +24,8 @@ export const imposeMultaMora = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 
 
