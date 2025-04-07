@@ -13,7 +13,5 @@ router.get('/', getAllMultas);
 
 // Rutas para imponer multas según el tipo
 router.post('/mora', imposeMultaMora);
-router.post('/danios', imposeMultaDanios);
-router.post('/perdida', imposeMultaPerdida);
 
 export default router;

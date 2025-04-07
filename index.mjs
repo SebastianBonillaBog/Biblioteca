@@ -6,6 +6,7 @@ import usuarioRoutes from './src/routes/usuarioRoutes.mjs';
 import prestamoRoutes from './src/routes/prestamoRoutes.mjs';
 import librosRoutes from './src/routes/libroRoutes.mjs';
 import cors from 'cors';
+import multaRoutes from './src/routes/multaRoutes.mjs';
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.get('/', (req, res) => {
 app.use('/api/libros', librosRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/prestamos', prestamoRoutes);
+app.use('/api/multas',multaRoutes)
 // Usar las rutas de personas2
 
 
