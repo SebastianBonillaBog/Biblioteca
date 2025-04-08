@@ -17,7 +17,8 @@ INSERT INTO usuario (nombre, apellido, num_documento, correo, telefono) VALUES
 ('Carlos', 'García', 456789123, 'carlos.garcia@email.com', '3116549870'),
 ('Laura', 'Ramírez', 789123456, 'laura.ramirez@email.com', '3109876543'),
 ('Pedro', 'Martínez', 321789654, 'pedro.martinez@email.com', '3014567890'),
-('Luis', 'Rodriguez', 523456721, 'luis.rodriguez@email.com', '31230114432');
+('Luis', 'Rodriguez', 523456721, 'luis.rodriguez@email.com', '31230114432'),
+('Jorge','Gomez', 123681723', 'jorge.gomez@email.com', '31928726812');
 
 CREATE TABLE editorial
 ( id_editorial int NOT NULL AUTO_INCREMENT,
@@ -47,7 +48,8 @@ INSERT INTO autor (nombre, nacionalidad) VALUES
 ('Dante Alighieri','Italiano'),
 ('Artur Conan Doyle','Británico'),
 ('Albert Camus','Francés'),
-('Robert kiyosaki','Japon');
+('Robert kiyosaki','Japon'),
+('Rafael Pombo', 'Colombia');
 
 CREATE TABLE libro
 ( id_libro int NOT NULL AUTO_INCREMENT,
